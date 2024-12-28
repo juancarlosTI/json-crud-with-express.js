@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/styles/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title-header">Requisições PUT para um end-point</h1>
+        <p class="description-header">Objetivo: fazer requisições PUT para alterar o conteúdo de um objeto, dentro de um
+            arquivo JSON</p>
+    </header>
+    <section class="container-app">
+        <!-- Um display grid, dividindo a tela ao meio -->
+        <div class="divider requests">
+            <form class="form" id="form-obj" method="post">
+                <label for="id-obj">ID: </label>
+                <input id="id-obj" name="id-obj" type="text" />
+                <label for="nome-obj">Nome: </label>
+                <input id="nome-obj" name="nome-obj" type="text" />
+                <label for="descricao-obj">Descrição: </label>
+                <input id="descricao-obj" name="descricao-obj" type="text" />
+                <br>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        <div class="divider listed-obj">
+
+            <pre class="json-output" id="json-output"></pre>
+
+        </div>
+    </section>
+    <script>
+        const fetchJson = fetch('http://localhost:3000/gender').then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar o arquivo JSON');
+            }
+            return response.json();
+        }).then(data => {
+            // Inserindo no pre - String formato .json
+            document.getElementById('json-output').textContent = JSON.stringify(data, null, 2);
+            return JSON.stringify(data, null, 2);
+        }).catch(error => {
+            console.error('Erro:', error);
+            document.getElementById('json-output').textContent = 'Erro ao carregar o arquivo JSON.';
+        });
+
+
+        document.getElementById('form-obj').addEventListener('submit', function (event) {
+            //event.preventDefault();
+
+            const id = document.getElementById('id-obj').value;
+            const nome = document.getElementById('nome-obj').value;
+            const descricao = document.getElementById('descricao-obj').value;
+
+            if (nome == '' && descricao == '') {
+                console.log('Preencha pelo menos um campo (além do ID do objeto a ser substituído)');
+            } else {
+                const inputJson = {
+                    id: id,
+                    nome: nome,
+                    descricao: descricao
+                }
+
+                const putData = fetch(`http://localhost:3000/gender/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(inputJson)
+                })
+                console.log(inputJson);
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

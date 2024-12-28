@@ -1,0 +1,29 @@
+{
+  "genero": [
+    {
+      "id": "0",
+      "nome": "Aventura",
+      "descricao": ""
+    },
+    {
+      "id": "1",
+      "nome": "Carros",
+      "descricao": ""
+    },
+    {
+      "id": "2",
+      "nome": "Scifi",
+      "descricao": ""
+    },
+    {
+      "id": "3",
+      "nome": "Romance",
+      "descricao": ""
+    },
+    {
+      "id": "4",
+      "nome": "Comédia",
+      "descricao": "Filmes de comédia"
+    }
+  ]
+}
