@@ -1,29 +1,35 @@
-{
-  "genero": [
-    {
-      "id": "0",
-      "nome": "Aventura",
-      "descricao": ""
-    },
-    {
-      "id": "1",
-      "nome": "Carros",
-      "descricao": ""
-    },
-    {
-      "id": "2",
-      "nome": "Scifi",
-      "descricao": ""
-    },
-    {
-      "id": "3",
-      "nome": "Romance",
-      "descricao": ""
-    },
-    {
-      "id": "4",
-      "nome": "Comédia",
-      "descricao": "Filmes de comédia"
-    }
-  ]
-}
+[
+  {
+    "id": "0",
+    "nome": "Aventura",
+    "descricao": ""
+  },
+  {
+    "id": "1",
+    "nome": "Action"
+  },
+  {
+    "id": "3",
+    "nome": "Romance",
+    "descricao": ""
+  },
+  {
+    "id": "4",
+    "nome": "Comédia",
+    "descricao": "Filmes de comédia"
+  },
+  {
+    "id": "5",
+    "nome": "Documentarios",
+    "descricao": ""
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "id": 10,
+    "nome": "Docs"
+  }
+]

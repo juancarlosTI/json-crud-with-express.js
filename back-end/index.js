@@ -15,17 +15,74 @@ app.use(express.json())
 const genero = JSON.parse(fs.readFileSync('./src/json/data.json', 'utf-8'));
 
 // Items do JSON
-genero.genero.map(item => {
+genero.map(item => {
     console.log(item);
 })
 
-// Get array de gênero pelo nome
+// Get array de todos os gêneros
 app.get('/gender', (req, res) => {
     res.status(200).json({
         message: "GET: 200",
-        genders: genero.genero
+        genders: genero
     });
 });
+
+
+// POST
+app.post('/gender', (req, res) => {
+    // O post verificará se o id e o nome já existem no arquivo JSON
+    if (req.body.nome === "" || req.body.id === "") {
+        throw new Error(res.status(409).json({
+            message: 'Erro - Preencha os campos obrigatórios - nome e Id'
+        }))
+    }
+
+    // Salva o valor do ID em uma variável
+    const validationId = parseInt(req.body.id);
+
+    console.log(genero.some(item => item && item.id == validationId));
+
+    try {
+        if (!genero.some(item => item && item.id == validationId)) {
+            console.log('Entrei no if')
+            // Verificar se existe um gênero com o nome igual o da requisição;
+            const nomeExistente = genero.some(item => item && item.nome === req.body.nome);
+
+            if (nomeExistente) {
+                return res.status(409).json({
+                    message: 'Erro - Nome já existe no arquivo.'
+                });
+            }
+
+            console.log('Passou na validação');
+
+            // Escrever JSON utilizando o FS
+            genero[validationId] = req.body;
+            res.status(200).json({
+                message: 'Dados foram registrados!',
+                data: genero[validationId]
+            });
+            JSON.parse(fs.writeFileSync('./src/json/data.json', JSON.stringify(genero, null, 2), 'utf-8'));
+            return;
+
+            // Passou na validação - Pode escrever o POST
+            // console.log(req.body);
+        } else {
+            return res.status(404).json({
+                message: 'ID excedeu o tamanho da lista ou é inválido.',
+                data: []
+            });
+        }
+    } catch (err) {
+        console.error('Erro: ', err.message);
+        if (!res.headersSent) {
+            res.status(500).json({ message: "Erro no cabecalho " , error: err.message });
+        }
+        
+        
+    }
+
+})
 
 // PUT
 // Quando o put ser executado, vai falhar porque o get está usando um nome que vai ser alterado, logo após a alteração, o nome atual deixa de ser válido pois não existe.
@@ -33,10 +90,10 @@ app.put('/gender/:id', (req, res) => {
     // Salva o valor do ID em uma variável
     const validationId = parseInt(req.params.id);
     // Verifica se o nome foi preenchido
-    if (!req.body.nome){
+    if (!req.body.nome) {
         throw new Error(res.status(409).json({
             message: 'Erro - Nome Obrigatório.'
-        }))    
+        }))
     }
 
     try {
@@ -65,7 +122,7 @@ app.put('/gender/:id', (req, res) => {
             genero.genero[validationId] = req.body;
             res.status(200).json({
                 message: 'Dados foram registrados!',
-                data: genero.genero[validationId]
+                data: genero[validationId]
             });
             JSON.parse(fs.writeFileSync('./src/json/data.json', JSON.stringify(genero, null, 2), 'utf-8'));
             return;
@@ -78,7 +135,45 @@ app.put('/gender/:id', (req, res) => {
             throw new Error('ID excedeu o tamanho da lista ou é inválido.');
         }
     } catch (err) {
-        if (!res.headersSent){
+        if (!res.headersSent) {
+            res.status(400).json({ message: "Erro no cabecalho " + err.message });
+        }
+        res.status(500).json({
+            message: 'Aconteceu um erro no servidor!',
+        });
+        console.error('Erro: ', err.message);
+    }
+})
+
+// DELETE
+app.delete('/gender/:id', (req, res) => {
+
+    // console.log('ID', req.params.id);
+    if (!req.params.id) {
+        throw new Error(res.status(409).json({
+            message: 'Erro - Preencha os campos obrigatórios - Id'
+        }))
+    }
+
+    const validationId = parseInt(req.params.id);
+
+    try {
+        if (validationId <= genero.genero.length - 1) {
+            console.log('Remoção de ID existente');
+            // Achar o id - excluir o ID
+
+
+            console.log();
+        } else {
+            res.status(404).json({
+                message: 'ID inválido.',
+                data: []
+            });
+            throw new Error('ID inválido.');
+        }
+
+    } catch (err) {
+        if (!res.headersSent) {
             res.status(400).json({ message: "Erro no cabecalho " + err.message });
         }
         res.status(500).json({
