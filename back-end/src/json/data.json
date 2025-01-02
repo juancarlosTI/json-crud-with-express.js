@@ -1,35 +1,37 @@
 [
   {
-    "id": "0",
-    "nome": "Aventura",
-    "descricao": ""
-  },
-  {
-    "id": "1",
-    "nome": "Action"
-  },
-  {
-    "id": "3",
+    "id": "4",
     "nome": "Romance",
     "descricao": ""
   },
   {
-    "id": "4",
-    "nome": "Comédia",
-    "descricao": "Filmes de comédia"
+    "id": "2",
+    "nome": "Aventura",
+    "descricao": ""
   },
   {
     "id": "5",
-    "nome": "Documentarios",
+    "nome": "Ação",
     "descricao": ""
   },
-  null,
-  null,
-  null,
-  null,
-  null,
   {
-    "id": 10,
-    "nome": "Docs"
+    "id": "1",
+    "nome": "Antigos",
+    "descricao": ""
+  },
+  {
+    "id": "3",
+    "nome": "Terror",
+    "descricao": ""
+  },
+  {
+    "id": "10",
+    "nome": "Desconhecido",
+    "descricao": ""
+  },
+  {
+    "id": "0",
+    "nome": "OK",
+    "descricao": ""
   }
 ]

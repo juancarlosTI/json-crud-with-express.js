@@ -36,3 +36,13 @@ pre#json-output{
     display: flex;
     flex-direction: column;
 }
+
+.metodo {
+    display:flex;
+    width: 120px;
+    justify-content: space-between;
+}
+
+.metodo input {
+    margin-left:20px;
+}

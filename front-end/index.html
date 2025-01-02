@@ -17,6 +17,16 @@
     <section class="container-app">
         <!-- Um display grid, dividindo a tela ao meio -->
         <div class="divider requests">
+            <label class="metodo" for="opcao2">POST
+                <input type="radio" name="opcao" id="opcao2" value="POST">
+            </label>
+            <label class="metodo" for="opcao3">PUT
+                <input type="radio" name="opcao" id="opcao3" value="PUT">
+            </label>
+            <label class="metodo" for="opcao4">DELETE
+                <input type="radio" name="opcao" id="opcao4" value="DELETE">
+            </label>
+            <br>
             <form class="form" id="form-obj" method="post">
                 <label for="id-obj">ID: </label>
                 <input id="id-obj" name="id-obj" type="text" />
@@ -51,34 +61,78 @@
 
 
         document.getElementById('form-obj').addEventListener('submit', function (event) {
-            event.preventDefault();
+            //event.preventDefault();
 
             const id = document.getElementById('id-obj').value;
             const nome = document.getElementById('nome-obj').value;
             const descricao = document.getElementById('descricao-obj').value;
 
-            if (nome == '' && descricao == '') {
-                console.log('Preencha pelo menos um campo (além do ID do objeto a ser substituído)');
-            } else {
-                const inputJson = {
-                    id: id,
-                    nome: nome,
-                    descricao: descricao
-                }
+            const metodoEscolhido = document.querySelector('input[name="opcao"]:checked')?.value
+            console.log(metodoEscolhido);
 
-                const putData = fetch(`http://localhost:3000/gender/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(inputJson)
-                })
-                console.log(inputJson);
+
+
+            if (!metodoEscolhido) {
+                console.log('Escolha um método');
+                return;
+            }
+            else {
+                if (id == '') {
+                    console.log('Preencha o ID - Descrição opcional');
+                    return;
+                }
+                if (metodoEscolhido == 'POST' || metodoEscolhido == 'PUT') {
+                    if (nome == '') {
+                        window.alert("Para utilizar os métodos POST e PUT, é obrigatório preencher o campo 'Nome' ")
+                    } else {
+                        switch (metodoEscolhido) {
+                            case 'POST':
+                                const postData = fetch(`http://localhost:3000/gender`, {
+                                    method: metodoEscolhido,
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: id,
+                                        nome: nome,
+                                        descricao: descricao
+                                    })
+                                })
+                                break;
+
+                            case 'PUT':
+                                const putData = fetch(`http://localhost:3000/gender/${id}`, {
+                                    method: `${metodoEscolhido}`,
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: id,
+                                        nome: nome,
+                                        descricao: descricao
+                                    })
+                                })
+                                window.alert('Foi', id);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                } else if (metodoEscolhido == 'DELETE') {
+                    const deleteData = fetch(`http://localhost:3000/gender/${id}`, {
+                        method: `${metodoEscolhido}`,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                } else {
+                    window.alert('Método inválido');
+                }
             }
         })
 
 
     </script>
 </body>
-
 </html>
