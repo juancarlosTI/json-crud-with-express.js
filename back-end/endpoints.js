@@ -3,7 +3,7 @@ const fs = require('fs');
 const router = express.Router()
 
 // Array de gêneros de filmes
-const genero = JSON.parse(fs.readFileSync('./src/json/data.json', 'utf-8'));
+const genero = JSON.parse(fs.readFileSync('./src/json/categories-data.json', 'utf-8'));
 
 
 // Items do JSON
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
                 message: 'Dados foram registrados!',
                 data: genero[genero.length - 1]
             });
-            JSON.parse(fs.writeFileSync('./src/json/data.json', JSON.stringify(genero, null, 2), 'utf-8'));
+            JSON.parse(fs.writeFileSync('./src/json/categories-data.json', JSON.stringify(genero, null, 2), 'utf-8'));
             return;
 
             // Passou na validação - Pode escrever o POST
@@ -127,7 +127,7 @@ router.put('/:id', (req, res) => {
                     message: 'Dados foram registrados!',
                     data : genero[genero.length - 1]
                 });
-                JSON.parse(fs.writeFileSync('./src/json/data.json', JSON.stringify(genero, null, 2), 'utf-8'));
+                JSON.parse(fs.writeFileSync('./src/json/categories-data.json', JSON.stringify(genero, null, 2), 'utf-8'));
                 return;
             }
         }
@@ -163,7 +163,7 @@ router.delete('/:id', (req, res) => {
             genero.push(...novoJson);
             console.log(genero);
 
-            JSON.parse(fs.writeFileSync('./src/json/data.json', JSON.stringify(novoJson, null, 2), 'utf-8'));
+            JSON.parse(fs.writeFileSync('./src/json/categories-data.json', JSON.stringify(novoJson, null, 2), 'utf-8'));
             return;
         } else {
             res.status(404).json({

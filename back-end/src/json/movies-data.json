@@ -1,0 +1,38 @@
+[
+    {
+        "id":"1",
+        "title":"",
+        "genre":"",
+        "director":"Director name",
+        "releaseDate":"2024/04/22",
+        "language":"EN",
+        "duration": 120
+    },
+    {
+        "id":"2",
+        "title":"",
+        "genre":"",
+        "director":"Director name",
+        "releaseDate":"1984/03/10",
+        "language":"EN",
+        "duration": 160
+    },
+    {
+        "id":"3",
+        "title":"",
+        "genre":"",
+        "director":"Director name",
+        "releaseDate":"2023/09/15",
+        "language":"BR",
+        "duration": 240
+    },
+    {
+        "id":"4",
+        "title":"",
+        "genre":"",
+        "director":"Director name",
+        "releaseDate":"2025/05/25",
+        "language":"UK",
+        "duration": 100
+    }
+]

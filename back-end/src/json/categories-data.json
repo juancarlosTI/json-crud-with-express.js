@@ -1,10 +1,5 @@
 [
   {
-    "id": "4",
-    "nome": "Romance",
-    "descricao": ""
-  },
-  {
     "id": "2",
     "nome": "Aventura",
     "descricao": ""
@@ -30,8 +25,8 @@
     "descricao": ""
   },
   {
-    "id": "0",
-    "nome": "OK",
+    "id": "4",
+    "nome": "Novos",
     "descricao": ""
   }
 ]
