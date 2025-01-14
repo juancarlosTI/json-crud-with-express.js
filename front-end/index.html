@@ -17,7 +17,7 @@
             Para POST e PUT:
             - É necessário o ID e NOME;</br>
             \\ Para DELETE:
-            - Só ID; 
+            - Só ID;
         </p>
     </header>
     <section class="container-app">
@@ -93,30 +93,43 @@
                     } else {
                         switch (metodoEscolhido) {
                             case 'POST':
-                                const postData = fetch(`/gender`, {
-                                    method: metodoEscolhido,
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        id: id,
-                                        nome: nome,
-                                        descricao: descricao
+
+                                try {
+                                    const postData = fetch(`/gender`, {
+                                        method: metodoEscolhido,
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            id: id,
+                                            nome: nome,
+                                            descricao: descricao
+                                        })
                                     })
-                                })
+                                } catch (error) {
+                                    res.status(500).json({
+                                        message: "Erro desconhecido"
+                                    })
+                                }
                                 break;
                             case 'PUT':
-                                const putData = fetch(`/gender/${id}`, {
-                                    method: `${metodoEscolhido}`,
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        id: id,
-                                        nome: nome,
-                                        descricao: descricao
+                                try {
+                                    const putData = fetch(`/gender/${id}`, {
+                                        method: `${metodoEscolhido}`,
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            id: id,
+                                            nome: nome,
+                                            descricao: descricao
+                                        })
                                     })
-                                })
+                                } catch (error) {
+                                    res.status(500).json({
+                                        message: "Erro desconhecido"
+                                    })
+                                }
                                 break;
                             default:
                                 break;
@@ -124,12 +137,18 @@
                     }
 
                 } else if (metodoEscolhido == 'DELETE') {
-                    const deleteData = fetch(`/gender/${id}`, {
-                        method: `${metodoEscolhido}`,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    try {
+                        const deleteData = fetch(`/gender/${id}`, {
+                            method: `${metodoEscolhido}`,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                    } catch (error) {
+                        res.status(500).json({
+                            message: "Erro desconhecido"
+                        })
+                    }
                 } else {
                     window.alert('Método inválido');
                 }
@@ -139,4 +158,5 @@
 
     </script>
 </body>
+
 </html>
