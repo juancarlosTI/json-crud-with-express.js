@@ -19,7 +19,7 @@ app.use('/gender', routes);
 // Listagem de filmes
 app.use('/movies', movies);
 // Middleware para servir arquivos estáticos (frontend)
-//app.use(express.static(path.join(__dirname, '../front-end')));
+app.use(express.static(path.join(__dirname, '../front-end')));
 
 
 // Iniciar servidor
