@@ -19,24 +19,23 @@ Edição de um arquivo JSON localizado no servidor
 
 ** INTERFACE **
 
-- Lado esquerdo: Campo de edição do corpo de uma requisição PUT;
+- Lado esquerdo: Campo de edição do corpo de uma requisição;
 - Lado direito: Listagem (ou visualização) de um arquivo .json que conterá todos os gêneros de filme;
 
 - Objetivo:
-    - Ser possível editar, através de uma requisição PUT, os detalhes de um gênero de filme listado no arquivo *.json.
+    - Funções CRUD, que modificam/criam os detalhes de um gênero de filme listado no arquivo *.json.
 
 - Validação:
     - Verificar se o 'ID' e/ou 'nome' do gênero existe na base de dados (arquivo *.json);
 
-    Se 'ID' existe e 'nome' existe:
-        - Mensagem: não existe o gênero com o id {id} ou;
-        - Mensagem: O nome já está cadastrado;
+    Se 'nome' existe:
+        - Mensagem: "Erro - Nome já existe no arquivo.";
         
     Se 'ID' existe e 'nome' não:
-        - fazer a alteração do conteúdo (nome e/ou descrição);
+        - Mensagem: "Erro - Preencha os campos obrigatórios - nome e Id";
     
-    Se 'ID' não existe:
-        - Mensagem: 'ID inválido'
+    Se 'ID' existe:
+        - Mensagem: "ID excedeu o tamanho da lista ou é inválido."
 
 ------------------------------------------------
 
@@ -63,6 +62,5 @@ Edição de um arquivo JSON localizado no servidor
 
 
     BUGS
-
-    - A página é atualizada quando a requisição tem status(200). 
-    - No back-end aparece um erro de envio de headers, porque quando o arquivo é salvo, o servidor atualiza o front-end antes de enviar o status(200).
+  
+    - No back-end aparece um erro de envio de headers, porque quando o arquivo JSON é salvo, o servidor atualiza o front-end antes de enviar o status(200).
