@@ -45,7 +45,7 @@
         </div>
     </section>
     <script>
-        const fetchJson = fetch('http://localhost:3000/gender').then(response => {
+        const fetchJson = fetch('/gender').then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao carregar o arquivo JSON');
             }
@@ -87,7 +87,7 @@
                     } else {
                         switch (metodoEscolhido) {
                             case 'POST':
-                                const postData = fetch(`http://localhost:3000/gender`, {
+                                const postData = fetch(`/gender`, {
                                     method: metodoEscolhido,
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -99,9 +99,8 @@
                                     })
                                 })
                                 break;
-
                             case 'PUT':
-                                const putData = fetch(`http://localhost:3000/gender/${id}`, {
+                                const putData = fetch(`/gender/${id}`, {
                                     method: `${metodoEscolhido}`,
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -112,7 +111,6 @@
                                         descricao: descricao
                                     })
                                 })
-                                window.alert('Foi', id);
                                 break;
                             default:
                                 break;
@@ -120,7 +118,7 @@
                     }
 
                 } else if (metodoEscolhido == 'DELETE') {
-                    const deleteData = fetch(`http://localhost:3000/gender/${id}`, {
+                    const deleteData = fetch(`/gender/${id}`, {
                         method: `${metodoEscolhido}`,
                         headers: {
                             'Content-Type': 'application/json'

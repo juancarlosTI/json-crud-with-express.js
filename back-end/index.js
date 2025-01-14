@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const routes = require('./endpoints');
 const movies = require('./movies');
+const port = process.env.PORT || 3000;
 
 // Inicialização
 const app = express();
@@ -17,8 +18,8 @@ app.use('/gender', routes);
 // Listagem de filmes
 app.use('/movies', movies);
 // Iniciar servidor
-app.listen(3000, () => {
-    console.log('Servidor em execução na porta http://localhost:3000/');
+app.listen(port, () => {
+    console.log(`Servidor em execução na porta http://localhost:${port}/`);
 })
 
 module.exports = app;
