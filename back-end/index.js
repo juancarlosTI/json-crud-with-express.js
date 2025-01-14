@@ -20,6 +20,8 @@ app.use('/gender', routes);
 app.use('/movies', movies);
 // Middleware para servir arquivos estáticos (frontend)
 app.use(express.static(path.join(__dirname, '../frontend')));
+console.log('Caminho atual do backend:', __dirname);
+
 
 // Rota padrão
 app.get('*', (req,res) => {
