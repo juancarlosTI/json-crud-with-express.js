@@ -17,10 +17,12 @@ app.use(express.json())
 app.use('/gender', routes);
 // Listagem de filmes
 app.use('/movies', movies);
+// Middleware para servir arquivos estáticos (frontend)
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Rota padrão
 app.get('*', (req,res) => {
-    res.sendFile('../front-end/index.html');
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
 })
 
 // Iniciar servidor
