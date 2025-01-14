@@ -24,9 +24,9 @@ console.log('Caminho atual do backend:', __dirname);
 
 
 // Rota padrão
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../front-end/index.html'));
-})
+// app.get('*', (req,res) => {
+//     res.sendFile(path.join(__dirname, '../front-end/index.html'));
+// })
 
 // Iniciar servidor
 app.listen(port, () => {
