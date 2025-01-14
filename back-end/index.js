@@ -2,6 +2,7 @@
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const routes = require('./endpoints');
 const movies = require('./movies');
 const port = process.env.PORT || 3000;
