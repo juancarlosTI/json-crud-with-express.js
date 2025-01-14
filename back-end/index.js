@@ -17,6 +17,12 @@ app.use(express.json())
 app.use('/gender', routes);
 // Listagem de filmes
 app.use('/movies', movies);
+
+// Rota padrão
+app.get('*', (req,res) => {
+    res.sendFile('../front-end/index.html');
+})
+
 // Iniciar servidor
 app.listen(port, () => {
     console.log(`Servidor em execução na porta http://localhost:${port}/`);
