@@ -19,14 +19,8 @@ app.use('/gender', routes);
 // Listagem de filmes
 app.use('/movies', movies);
 // Middleware para servir arquivos estáticos (frontend)
-app.use(express.static(path.join(__dirname, '../front-end')));
-console.log('Caminho atual do backend:', __dirname);
+//app.use(express.static(path.join(__dirname, '../front-end')));
 
-
-// Rota padrão
-// app.get('*', (req,res) => {
-//     res.sendFile(path.join(__dirname, '../front-end/index.html'));
-// })
 
 // Iniciar servidor
 app.listen(port, () => {
